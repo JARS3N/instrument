@@ -37,7 +37,7 @@ OUT <- dplyr::bind_cols(Map(function(x, y) {
 },
 x = lapply(paths, df),
 y = vars))
-OUT$Well <- well(length(OUT[, 1]))
+OUT$Well <- plates::well(length(OUT[, 1]))
 OUT$sn <- as.numeric(xpathSApply(A, "//CartridgeSerial", xmlValue))
 OUT$Lot <-xpathSApply(A, "//CartridgeLot", xmlValue)
 if(OUT$Lot[1]==""){OUT$Lot<-NA}
