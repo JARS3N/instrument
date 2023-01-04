@@ -42,7 +42,7 @@ OUT$sn <- as.numeric(xpathSApply(A, "//CartridgeSerial", xmlValue))
 OUT$Lot <-xpathSApply(A, "//CartridgeLot", xmlValue)
 if(OUT$Lot[1]==""){OUT$Lot<-NA}
 OUT$O2_target<-xpathSApply(A, "//O2Data/TargetEmissionValue", xmlValue)
-OUT$pH_targetxpathSApply(A, "//PHData/TargetEmissionValue", xmlValue)
+OUT$pH_target <- xpathSApply(A, "//PHData/TargetEmissionValue", xmlValue)
 OUT$when <- xpathSApply(A, "//WhenCalibrated", xmlValue)[1]
 OUT$file<-basename(fl)
 OUT}
