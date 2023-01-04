@@ -41,5 +41,6 @@ OUT$Well <- plates::well(length(OUT[, 1]))
 OUT$sn <- as.numeric(xpathSApply(A, "//CartridgeSerial", xmlValue))
 OUT$Lot <-xpathSApply(A, "//CartridgeLot", xmlValue)
 if(OUT$Lot[1]==""){OUT$Lot<-NA}
+OUT$when <- xpathSApply(A, "//WhenCalibrated", xmlValue)[1]
 OUT$file<-basename(fl)
 OUT}
