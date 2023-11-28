@@ -43,7 +43,6 @@ check_sn<-xpathSApply(A, "//CartridgeSerial",
 check_lot<-xpathSApply(A, "//CartridgeLot", xmlValue)
 OUT$sn <- if(length(check_sn)>0){as.numeric(check_sn)}else{NA}
 OUT$Lot<-if (length(check_lot)>0) {check_lot}else{NA}
-if(OUT$Lot[1]==""){OUT$Lot<-NA}
 OUT$O2_target<-xpathSApply(A, "//O2Data/TargetEmissionValue", xmlValue)
 OUT$pH_target <- xpathSApply(A, "//PHData/TargetEmissionValue", xmlValue)
 OUT$when <- xpathSApply(A, "//WhenCalibrated", xmlValue)[1]
