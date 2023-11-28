@@ -38,8 +38,11 @@ OUT <- dplyr::bind_cols(Map(function(x, y) {
 x = lapply(paths, df),
 y = vars))
 OUT$Well <- plates::well(length(OUT[, 1]))
-OUT$sn <- as.numeric(xpathSApply(A, "//CartridgeSerial", xmlValue))
-OUT$Lot <-xpathSApply(A, "//CartridgeLot", xmlValue)
+check_sn<-xpathSApply(A, "//CartridgeSerial",
+                        xmlValue)
+check_lot<-xpathSApply(A, "//CartridgeLot", xmlValue)
+OUT$sn <- if(length(check_sn)>0){as.numeric(check_sn)}else{NA}
+OUT$Lot<-if (length(check_lot)>0) {check_lot}else{NA}
 if(OUT$Lot[1]==""){OUT$Lot<-NA}
 OUT$O2_target<-xpathSApply(A, "//O2Data/TargetEmissionValue", xmlValue)
 OUT$pH_target <- xpathSApply(A, "//PHData/TargetEmissionValue", xmlValue)
